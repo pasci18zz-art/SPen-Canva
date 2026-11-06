@@ -15,8 +15,7 @@ jobs:
           distribution: temurin
           java-version: "17"
 
-      - uses: android-actions/setup-android@v3
-
+      # Das Android-SDK ist auf ubuntu-latest bereits vorinstalliert (ANDROID_HOME).
       - name: APK bauen
         run: |
           chmod +x gradlew
