@@ -142,6 +142,14 @@
                 <TextView style="@style/Muted" android:layout_marginBottom="16dp"
                     android:text="An: erstes Halten schaltet sofort weiter, ein zweites Halten im Zeitfenster springt zwei zurück (netto eine Folie zurück). Aus: die App wartet das Zeitfenster ab und entscheidet dann – keine Zwischenfolie, aber Verzögerung." />
 
+                <Switch
+                    android:id="@+id/switchToast"
+                    style="@style/Body"
+                    android:layout_marginBottom="4dp"
+                    android:text="Kurze Bestätigung beim Halten anzeigen" />
+                <TextView style="@style/Muted" android:layout_marginBottom="16dp"
+                    android:text="Zeigt „▶ weiter“ bzw. „◀ zurück“ kurz unten an. So siehst du in der Präsentation, ob das Halten der S-Pen-Taste ankommt." />
+
                 <TextView style="@style/Body" android:text="Ausgabe an andere Apps" />
                 <RadioGroup
                     android:id="@+id/radioOutput"

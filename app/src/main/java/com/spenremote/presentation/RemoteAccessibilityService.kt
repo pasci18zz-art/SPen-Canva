@@ -43,6 +43,11 @@ class RemoteAccessibilityService : AccessibilityService() {
             instant = { prefs.instant },
         ) { isDouble, actions ->
             val label = if (isDouble) "Zweimal gehalten" else "Einmal gehalten"
+            if (prefs.confirmToast) {
+                android.widget.Toast.makeText(
+                    this, if (isDouble) "◀ zurück" else "▶ weiter", android.widget.Toast.LENGTH_SHORT
+                ).show()
+            }
             perform(actions, label, prefs.delayMs.toLong())
         }
         instance = this
@@ -71,6 +76,7 @@ class RemoteAccessibilityService : AccessibilityService() {
 
     /** Aufgerufen von [PenTriggerActivity], wenn Air Actions „Drücken und halten“ ausgelöst hat. */
     fun onPenHold() {
+        EventBus.post("Halten empfangen", "App im Vordergrund: ${foregroundPackage ?: "unbekannt"}")
         detector.press()
     }
 

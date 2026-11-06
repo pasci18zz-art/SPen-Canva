@@ -9,19 +9,32 @@ import android.widget.Toast
  * Unsichtbares "Trampolin".
  *
  * In den Air-Actions-Einstellungen kann man unter „Drücken und halten“ eine beliebige App
- * auswählen. Wählt man diese App, startet Samsungs Air-Command-Dienst diese Activity – auch
- * wenn gerade Canva o. Ä. im Vordergrund ist. Sie zeigt nichts an, meldet das Signal an den
+ * auswählen. Samsungs Air-Command-Dienst startet dann diese Activity – auch wenn gerade Canva
+ * o. Ä. im Vordergrund ist. Sie zeigt nichts an, meldet das Signal an den
  * Bedienungshilfe-Dienst und beendet sich sofort, sodass die Präsentation wieder vorne ist.
  *
- * Wird sie normal über das App-Symbol gestartet, öffnet sie die Hauptseite.
+ * Haupt-Symbol „Presentation Remote“: Start durch Air Command -> Folienaktion,
+ * sonst Hauptseite öffnen (Erkennung über den Referrer).
+ * Zweites Symbol „S-Pen-Halten (Remote)“ ([PenHoldActivity]): löst IMMER eine Folienaktion aus.
+ * Das ist die robuste Wahl für „Drücken und halten“, falls One UI einen anderen Referrer meldet.
  */
-class PenTriggerActivity : Activity() {
+open class PenTriggerActivity : Activity() {
+
+    protected open val alwaysTrigger = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val caller = referrer?.host
-        if (caller == AIR_COMMAND_PACKAGE) {
+        val caller = referrer?.host ?: "unbekannt"
+        val fromPen = alwaysTrigger || caller == AIR_COMMAND_PACKAGE ||
+            caller.contains("aircommand") || caller.contains("spen")
+
+        EventBus.post(
+            "Start von „${if (alwaysTrigger) "S-Pen-Halten" else "Presentation Remote"}“",
+            "Aufrufer: $caller · ${if (fromPen) "→ Folienaktion" else "→ Hauptseite"}"
+        )
+
+        if (fromPen) {
             EventBus.markSignal()
             val service = RemoteAccessibilityService.instance
             if (service == null) {
@@ -44,4 +57,9 @@ class PenTriggerActivity : Activity() {
     companion object {
         const val AIR_COMMAND_PACKAGE = "com.samsung.android.service.aircommand"
     }
+}
+
+/** Zweites Launcher-Symbol: für „Drücken und halten“ auswählen – löst immer weiter/zurück aus. */
+class PenHoldActivity : PenTriggerActivity() {
+    override val alwaysTrigger = true
 }

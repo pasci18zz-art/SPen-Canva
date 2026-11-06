@@ -32,8 +32,13 @@ class Prefs(context: Context) {
 
     /** Wartezeit nach dem unsichtbaren Trampolin-Start, bevor die Aktion gesendet wird. */
     var delayMs: Int
-        get() = sp.getInt("delay_ms", 250)
+        get() = sp.getInt("delay_ms", 400)
         set(v) = sp.edit().putInt("delay_ms", v).apply()
+
+    /** Kurze Bestätigung (Toast) beim Auslösen über „Drücken und halten“. */
+    var confirmToast: Boolean
+        get() = sp.getBoolean("confirm_toast", true)
+        set(v) = sp.edit().putBoolean("confirm_toast", v).apply()
 
     var lastUrl: String
         get() = sp.getString("last_url", "") ?: ""

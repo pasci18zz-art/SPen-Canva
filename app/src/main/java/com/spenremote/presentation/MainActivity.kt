@@ -255,6 +255,11 @@ class MainActivity : Activity() {
             setOnCheckedChangeListener { _, checked -> prefs.instant = checked }
         }
 
+        findViewById<Switch>(R.id.switchToast).apply {
+            isChecked = prefs.confirmToast
+            setOnCheckedChangeListener { _, checked -> prefs.confirmToast = checked }
+        }
+
         val radio = findViewById<RadioGroup>(R.id.radioOutput)
         radio.check(
             when (prefs.output) {
@@ -383,9 +388,10 @@ class MainActivity : Activity() {
             1. Einstellungen › Apps › Presentation Remote › ⋮ › „Eingeschränkte Einstellungen zulassen“ (nötig für per APK installierte Apps ab Android 13).
             2. Einstellungen › Eingabehilfe › Installierte Apps › Presentation Remote › Ein.
             3. Einstellungen › Apps › Presentation Remote › Akku › Nicht eingeschränkt.
-            4. Air Actions › „Drücken und halten der S Pen-Taste“ › Presentation Remote.
-            5. In Canva präsentieren: 1× halten = weiter, 2× halten = zurück.
-            6. Klappt die Pfeiltaste nicht, oben „Wischgeste“ oder „Tippen“ wählen und mit „Ausgabe testen“ prüfen.
+            4. Air Actions › „Drücken und halten der S Pen-Taste“ › „S-Pen-Halten (Remote)“ auswählen (das zweite App-Symbol).
+            5. In Canva präsentieren: Taste ca. 1 s HALTEN = weiter, zweimal halten = zurück. Kurzes Drücken kommt in Canva nicht an – das blockiert Samsung.
+            6. Unten erscheint kurz „▶ weiter“? Dann kommt das Signal an. Wenn nicht: hier im Testbereich nachsehen, was protokolliert wurde.
+            7. Signal kommt an, aber die Folie wechselt nicht: „Verzögerung“ erhöhen (z. B. 600 ms) oder „Wischgeste“/„Tippen“ wählen.
         """.trimIndent()
     }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Presentation Remote</string>
+    <string name="hold_label">S-Pen-Halten (Remote)</string>
     <string name="action_next">Nächste Folie (Pfeil rechts)</string>
     <string name="action_previous">Vorherige Folie (Pfeil links)</string>
     <string name="action_raw">Rohsignal – App erkennt Doppelklick selbst</string>

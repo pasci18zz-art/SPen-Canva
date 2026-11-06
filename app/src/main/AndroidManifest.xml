@@ -36,6 +36,25 @@
         </activity>
 
         <!--
+          Zweites Symbol nur für Air Actions „Drücken und halten“: löst IMMER weiter/zurück aus
+          (unabhängig davon, welchen Aufrufer One UI meldet).
+        -->
+        <activity
+            android:name=".PenHoldActivity"
+            android:exported="true"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:launchMode="singleInstance"
+            android:label="@string/hold_label"
+            android:taskAffinity="com.spenremote.presentation.hold"
+            android:theme="@style/Theme.Remote.Invisible">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--
           Hauptseite. Trägt die offizielle Samsung-Air-Actions-Registrierung ("App-Aktionen").
           Samsung erlaubt nur EINE Activity pro App mit RemoteActions, darum liegt auch die
           eingebaute Präsentationsansicht in dieser Activity.

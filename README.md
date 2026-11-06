@@ -46,8 +46,9 @@ Native Android-App (Kotlin) für das Galaxy Tab S10+. Damit steuerst du Präsent
 1. Einstellungen › Apps › Presentation Remote › ⋮ › **Eingeschränkte Einstellungen zulassen**.
 2. Einstellungen › Eingabehilfe › Installierte Apps › Presentation Remote › **Ein**.
 3. Apps › Presentation Remote › Akku › **Nicht eingeschränkt**.
-4. Air Actions › **Drücken und halten der S Pen-Taste** › Presentation Remote.
-5. In Canva präsentieren: 1× halten = weiter, 2× halten (innerhalb des Halte-Fensters) = zurück.
+4. Air Actions › **Drücken und halten der S Pen-Taste** › **S-Pen-Halten (Remote)** (zweites App-Symbol, löst immer aus).
+5. In Canva präsentieren: Taste ca. 1 s **halten** = weiter, 2× halten (innerhalb des Halte-Fensters) = zurück. Kurzes Drücken kommt in Canva nicht an.
+   Beim Halten erscheint kurz „▶ weiter“. Erscheint nichts, steht im Testbereich der App, was angekommen ist.
 6. Reagiert Canva nicht auf die Pfeiltaste, in der App *Wischgeste* oder *Tippen* wählen. Mit *Ausgabe testen* lässt sich das prüfen, ohne den S Pen zu benutzen.
 
 ## Bekannte offene Punkte (nur am Gerät prüfbar)
