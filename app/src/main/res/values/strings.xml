@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Presentation Remote</string>
+    <string name="action_next">Nächste Folie (Pfeil rechts)</string>
+    <string name="action_previous">Vorherige Folie (Pfeil links)</string>
+    <string name="action_raw">Rohsignal – App erkennt Doppelklick selbst</string>
+    <string name="accessibility_label">Presentation Remote – Folien steuern</string>
+    <string name="accessibility_description">Sendet nach einem S-Pen-Signal (Air Actions „Drücken und halten“) eine Pfeiltaste bzw. Wischgeste an die gerade geöffnete Präsentations-App. Liest keine Bildschirminhalte und keine Eingaben.</string>
+</resources>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Offizielle Samsung-Air-Actions-Registrierung (S Pen Remote, "App actions").
+  Samsungs S-Pen-Framework wandelt den Bluetooth-Tastendruck in das hier genannte KeyEvent um
+  (trigger_key = KeyEvent-Name ohne "KEYCODE_") und schickt es an diese Activity –
+  aber NUR, wenn sie gerade oben im Vordergrund ist.
+  Nach der Installation muss die App unter Einstellungen > Erweiterte Funktionen > S Pen >
+  Air Actions einmal manuell aktiviert werden (Standard-Aktivierung erfordert eine Samsung-Freigabe).
+-->
+<remote-actions version="1.2">
+
+    <!-- Standard: Einmal drücken -> nächste Folie (Samsung unterscheidet Einfach/Doppel selbst). -->
+    <action
+        id="com.spenremote.presentation.NEXT"
+        label="@string/action_next"
+        priority="1"
+        trigger_key="DPAD_RIGHT">
+        <preference name="gesture" value="click" />
+        <preference name="button_only" value="true" />
+    </action>
+
+    <!-- Standard: Zweimal drücken -> vorherige Folie. -->
+    <action
+        id="com.spenremote.presentation.PREVIOUS"
+        label="@string/action_previous"
+        priority="2"
+        trigger_key="DPAD_LEFT">
+        <preference name="gesture" value="double_click" />
+        <preference name="button_only" value="true" />
+    </action>
+
+    <!--
+      Optional: Rohsignal ohne Samsung-Doppelklick-Logik. Wer "Einmal drücken" hierauf legt und
+      "Zweimal drücken" leer lässt, nutzt die einstellbare Doppelklick-Erkennung der App.
+    -->
+    <action
+        id="com.spenremote.presentation.RAW_CLICK"
+        label="@string/action_raw"
+        priority="3"
+        trigger_key="F12" />
+</remote-actions>

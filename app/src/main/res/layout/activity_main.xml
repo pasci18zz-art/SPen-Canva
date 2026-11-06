@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg">
+
+    <ScrollView
+        android:id="@+id/mainScroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/content"
+            android:orientation="vertical"
+            android:paddingStart="24dp"
+            android:paddingTop="32dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="32dp">
+
+            <!-- Kopf -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Presentation Remote"
+                android:textColor="@color/text"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/Muted"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="24dp"
+                android:text="S Pen als Präsentationsfernbedienung – Einmal drücken: weiter · Zweimal: zurück" />
+
+            <!-- Status -->
+            <LinearLayout style="@style/Card">
+                <TextView style="@style/CardTitle" android:text="Status" />
+
+                <TextView style="@style/Muted" android:text="Air Actions (Samsung)" />
+                <TextView android:id="@+id/statusAirActions" style="@style/Body" android:layout_marginBottom="12dp" />
+
+                <TextView style="@style/Muted" android:text="S Pen" />
+                <TextView android:id="@+id/statusPen" style="@style/Body" android:layout_marginBottom="12dp" />
+
+                <TextView style="@style/Muted" android:text="Bedienungshilfe-Dienst (Steuerung anderer Apps)" />
+                <TextView android:id="@+id/statusService" style="@style/Body" android:layout_marginBottom="12dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/btnAccessibility"
+                        style="@style/Btn"
+                        android:layout_marginEnd="8dp"
+                        android:text="Bedienungshilfe öffnen" />
+                    <Button
+                        android:id="@+id/btnAppInfo"
+                        style="@style/Btn"
+                        android:text="App-Info" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Testbereich -->
+            <LinearLayout style="@style/Card">
+                <TextView style="@style/CardTitle" android:text="Testbereich" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_test"
+                    android:gravity="center"
+                    android:minHeight="140dp"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView
+                        android:id="@+id/lastInputBig"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="S-Pen-Taste drücken"
+                        android:textColor="@color/accent"
+                        android:textSize="26sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/lastInputDetail"
+                        style="@style/Muted"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:gravity="center"
+                        android:text="Stift dabei nicht auf das Display halten" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/eventLog"
+                    style="@style/Muted"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="monospace"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/btnClearLog"
+                    style="@style/Btn"
+                    android:layout_marginTop="8dp"
+                    android:text="Protokoll leeren" />
+            </LinearLayout>
+
+            <!-- Einstellungen -->
+            <LinearLayout style="@style/Card">
+                <TextView style="@style/CardTitle" android:text="Einstellungen" />
+
+                <TextView android:id="@+id/labelDoubleClick" style="@style/Body" />
+                <TextView style="@style/Muted" android:text="Gilt für das „Rohsignal“, wenn die App selbst zwischen Einfach- und Doppelklick unterscheidet." />
+                <SeekBar
+                    android:id="@+id/seekDoubleClick"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="16dp"
+                    android:max="1000"
+                    android:min="150" />
+
+                <TextView android:id="@+id/labelHoldWindow" style="@style/Body" />
+                <TextView style="@style/Muted" android:text="Zeitfenster für „zweimal Drücken und halten“ (= zurück) in anderen Apps. Ein Halten dauert bei Samsung ca. 0,8 s." />
+                <SeekBar
+                    android:id="@+id/seekHoldWindow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="12dp"
+                    android:max="3000"
+                    android:min="600" />
+
+                <Switch
+                    android:id="@+id/switchInstant"
+                    style="@style/Body"
+                    android:layout_marginBottom="4dp"
+                    android:text="Sofort weiterschalten" />
+                <TextView style="@style/Muted" android:layout_marginBottom="16dp"
+                    android:text="An: erstes Halten schaltet sofort weiter, ein zweites Halten im Zeitfenster springt zwei zurück (netto eine Folie zurück). Aus: die App wartet das Zeitfenster ab und entscheidet dann – keine Zwischenfolie, aber Verzögerung." />
+
+                <TextView style="@style/Body" android:text="Ausgabe an andere Apps" />
+                <RadioGroup
+                    android:id="@+id/radioOutput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp">
+                    <RadioButton android:id="@+id/outKey" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:textColor="@color/text" android:text="Pfeiltaste rechts/links (Android 13+)" />
+                    <RadioButton android:id="@+id/outSwipe" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:textColor="@color/text" android:text="Wischgeste (nach links = weiter)" />
+                    <RadioButton android:id="@+id/outTap" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:textColor="@color/text" android:text="Tippen am rechten/linken Rand" />
+                </RadioGroup>
+
+                <TextView android:id="@+id/labelDelay" style="@style/Body" />
+                <TextView style="@style/Muted" android:text="Wartezeit, bis die Präsentations-App nach dem unsichtbaren Start wieder im Vordergrund ist." />
+                <SeekBar
+                    android:id="@+id/seekDelay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="12dp"
+                    android:max="800"
+                    android:min="50" />
+
+                <Button
+                    android:id="@+id/btnTestOutput"
+                    style="@style/Btn"
+                    android:text="Ausgabe testen: in 5 s „weiter“ senden" />
+                <TextView style="@style/Muted" android:layout_marginTop="6dp"
+                    android:text="Tippen, dann innerhalb von 5 s zur Präsentation (z. B. Canva) wechseln. So prüfst du die Weitergabe unabhängig vom S Pen." />
+            </LinearLayout>
+
+            <!-- Präsentieren in der App -->
+            <LinearLayout style="@style/Card">
+                <TextView style="@style/CardTitle" android:text="In dieser App präsentieren" />
+                <TextView style="@style/Muted" android:layout_marginBottom="10dp"
+                    android:text="Hier funktionieren Einmal- und Zweimal-Drücken direkt über Air Actions – ohne Bedienungshilfe. In Canva: Teilen › Link zur Ansicht kopieren (oder „Öffentlicher Ansichtslink“) und hier einfügen." />
+                <EditText
+                    android:id="@+id/urlField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_field"
+                    android:hint="https://www.canva.com/design/…/view"
+                    android:importantForAutofill="no"
+                    android:inputType="textUri"
+                    android:padding="12dp"
+                    android:singleLine="true"
+                    android:textColor="@color/text"
+                    android:textColorHint="@color/text_muted"
+                    android:textSize="14sp" />
+                <Button
+                    android:id="@+id/btnPresent"
+                    style="@style/Btn"
+                    android:layout_marginTop="10dp"
+                    android:text="Präsentation öffnen" />
+            </LinearLayout>
+
+            <!-- Anleitung -->
+            <LinearLayout style="@style/Card">
+                <TextView style="@style/CardTitle" android:text="Einrichtung" />
+                <TextView android:id="@+id/setupText" style="@style/Body" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Vollbild-Präsentationsansicht (gleiche Activity, weil Samsung nur eine Air-Actions-Activity pro App erlaubt) -->
+    <FrameLayout
+        android:id="@+id/presenter"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000"
+        android:visibility="gone">
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/presenterToast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_test"
+            android:paddingStart="14dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="14dp"
+            android:paddingBottom="8dp"
+            android:textColor="@color/accent"
+            android:textSize="14sp"
+            android:visibility="gone" />
+    </FrameLayout>
+</FrameLayout>
